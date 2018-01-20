@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Meckotlin</string>
+    <string name="login_activity_txt_title">Sistema MEC</string>
+    <string name="login_activity_username">Username o email</string>
+    <string name="login_activity_password">Contraseña</string>
+    <string name="login_activity_login">Login</string>
 </resources>

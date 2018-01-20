@@ -1,7 +1,8 @@
-package unicauca.meckotlin
+package unicauca.meckotlin.ui.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import unicauca.meckotlin.R
 
 class MainActivity : AppCompatActivity() {
 
