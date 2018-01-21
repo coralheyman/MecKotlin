@@ -12,7 +12,19 @@
         <item name="windowActionBar">false</item>
     </style>
 
-
+    <style name="edt_activity_login">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:background">@drawable/background_edt_login</item>
+        <item name="android:padding">7dp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorBlack</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
+    </style>
 
 
 </resources>

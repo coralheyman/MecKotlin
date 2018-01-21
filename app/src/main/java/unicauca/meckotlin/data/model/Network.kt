@@ -6,14 +6,11 @@ import android.arch.persistence.room.PrimaryKey
 /**
  * Created by coral on 20/01/2018.
  */
-
 @Entity
-class User (val username:String,
-            val password:String,
-            val email:String,
-            val nameUser:String) {
-
+class Network(val nameNetwork:String,
+              val ubication:String,
+              val descriptionNetwork:String){
     @PrimaryKey(autoGenerate = true)
-    var id:Long? = null
+    var idNetWork:Long? = null
 
 }
