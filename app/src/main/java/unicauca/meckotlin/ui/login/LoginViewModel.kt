@@ -10,7 +10,7 @@ import kotlin.concurrent.thread
  * Created by coral on 20/01/2018.
  */
 class LoginViewModel:ViewModel(){
-    private val dao:DatabaseDao = DB.con.dataBaseDao()
+   private val dao:DatabaseDao = DB.con.dataBaseDao()
 
     fun getUserByUsername(username:String){
         thread {
