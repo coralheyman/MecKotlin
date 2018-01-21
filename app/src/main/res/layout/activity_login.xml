@@ -36,7 +36,6 @@
 
     <EditText
         android:id="@+id/username"
-        style="@style/edt_activity_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -51,7 +50,6 @@
 
     <EditText
         android:id="@+id/password"
-        style="@style/edt_activity_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

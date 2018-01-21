@@ -2,6 +2,7 @@ package unicauca.meckotlin.data.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
+import unicauca.meckotlin.data.model.User
 
 /**
  * Created by coral on 20/01/2018.
@@ -10,6 +11,6 @@ import android.arch.persistence.room.Query
 interface DatabaseDao{
 
     @Query(value = "SELECT * FROM user WHERE username = :username")
-    fun selectUserByUsername(username:String)
+    fun selectUserByUsername(username:String):User
 
 }
