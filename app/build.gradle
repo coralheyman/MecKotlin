@@ -29,6 +29,10 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 def support_version = "27.0.1"
 def arch_version = "1.0.0-alpha4"
 def anko_version = "0.10.4"
