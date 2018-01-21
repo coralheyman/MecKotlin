@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey
  * Created by coral on 20/01/2018.
  */
 
-@Entity
+@Entity(tableName = "user")
 class User (val username:String,
             val password:String,
             val email:String,
