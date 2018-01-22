@@ -21,6 +21,6 @@ class Sensor(
         val stateSensor: Boolean,
         val readingSensor: Boolean,
         val eventsSensor: Boolean,
-        val idNetWork: Integer,
-        val dateRegister: Date) {
+        val idNetWork: Long,
+        val dateRegister: String) {
 }

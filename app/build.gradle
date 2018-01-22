@@ -33,8 +33,8 @@ androidExtensions {
     experimental = true
 }
 
-def support_version = "27.0.1"
-def arch_version = "1.0.0-alpha4"
+def support_version = "27.0.2"
+def arch_version = "1.0.0"
 def anko_version = "0.10.4"
 def rxJavaVersion = "2.0.6"
 def rxAndroidVersion = "2.0.1"

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_navigation.*
@@ -15,7 +14,6 @@ import unicauca.meckotlin.R
 import unicauca.meckotlin.adapter.NetworkAdapter
 import unicauca.meckotlin.data.model.Network
 import unicauca.meckotlin.ui.detailNetwork.DetailActivity
-import unicauca.meckotlin.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var data: MutableList<Network> = mutableListOf()
