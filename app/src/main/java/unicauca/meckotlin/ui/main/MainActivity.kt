@@ -16,8 +16,6 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_navigation.*
 import kotlinx.android.synthetic.main.content_navigation.*
-import kotlinx.android.synthetic.main.network_template.*
-import kotlinx.android.synthetic.main.template_add_network.*
 import org.jetbrains.anko.*
 import unicauca.meckotlin.R
 import unicauca.meckotlin.adapter.NetworkAdapter
@@ -86,7 +84,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun goToDetail(position: Int) {
-        startActivity<DetailActivity>("network" to data[position])
+        startActivity<DetailActivity>("network" to data[position], "idNetWork" to data[position].idNetWork)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
