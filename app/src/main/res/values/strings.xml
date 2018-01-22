@@ -9,4 +9,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="dialog_yes">ACEPTAR</string>
+    <string name="dialog_no">CANCELAR</string>
 </resources>

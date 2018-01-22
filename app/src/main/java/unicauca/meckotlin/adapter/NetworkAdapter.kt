@@ -63,12 +63,12 @@ class NetworkHolder(view: View): RecyclerView.ViewHolder(view){
         binding.network = network
         binding.handler = handler
         binding.position = position
-        if(network.stateNetwork.equals("Activa")) {
-            binding.statusNetwork.text = "Activa"
-            binding.imgStatusNetwork.setImageDrawable(v.resources.getDrawable(R.drawable.btn_green, handler.context.theme))
+        if(network.stateNetwork.equals("true")) {
+            //binding.statusNetwork.text = "Activa"
+            //binding.imgStatusNetwork.setImageDrawable(v.resources.getDrawable(R.drawable.btn_green, handler.context.theme))
         }else{
-            binding.statusNetwork.text = "Inactiva"
-            binding.imgStatusNetwork.setImageDrawable(v.resources.getDrawable(R.drawable.btn_red, handler.context.theme))
+           // binding.statusNetwork.text = "Inactiva"
+            //binding.imgStatusNetwork.setImageDrawable(v.resources.getDrawable(R.drawable.btn_red, handler.context.theme))
         }
 
 

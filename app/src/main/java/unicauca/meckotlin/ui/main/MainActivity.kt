@@ -1,32 +1,44 @@
 package unicauca.meckotlin.ui.main
 
+import android.app.AlertDialog
+import android.arch.lifecycle.ViewModelProviders
+import android.content.DialogInterface
+import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_navigation.*
 import kotlinx.android.synthetic.main.content_navigation.*
-import org.jetbrains.anko.startActivity
+import kotlinx.android.synthetic.main.network_template.*
+import kotlinx.android.synthetic.main.template_add_network.*
+import org.jetbrains.anko.*
 import unicauca.meckotlin.R
 import unicauca.meckotlin.adapter.NetworkAdapter
 import unicauca.meckotlin.data.model.Network
+import unicauca.meckotlin.databinding.TemplateAddNetworkBinding
 import unicauca.meckotlin.ui.detailNetwork.DetailActivity
-import unicauca.meckotlin.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
     var data: MutableList<Network> = mutableListOf()
     var networkAdapter: NetworkAdapter = NetworkAdapter()
+    lateinit var viewModel: MainViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         setSupportActionBar(toolbar)
 
-        val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
@@ -36,6 +48,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         networkAdapter.onClickNetwork = this::goToDetail
 
         loadData()
+
+
+    }
+
+    fun loadData() {
+        doAsync {
+            data = viewModel.getNetworks()
+            uiThread { networkAdapter.data = data }
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -64,15 +85,40 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-
-    fun loadData() {
-        data.add(Network("Red 1", "Carrera 2", "Activa", "Observaciones red 1", "https://alexdunndev.files.wordpress.com/2017/07/kotlin_tabs.png?w=825&h=510&crop=1"))
-        data.add(Network("Red 2", "Carrera 25N # 34-56", "Inactiva", "Observaciones red 2", "https://alexdunndev.files.wordpress.com/2017/07/kotlin_tabs.png?w=825&h=510&crop=1"))
-        networkAdapter.data = data
-    }
-
     fun goToDetail(position: Int) {
         startActivity<DetailActivity>("network" to data[position])
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_action_bar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.createNetwork -> {
+                var builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                builder.setTitle("Crear una nueva red")
+                var v: View = layoutInflater.inflate(R.layout.template_add_network, null)
+                var binding: TemplateAddNetworkBinding = DataBindingUtil.bind(v)
+                var stateNetw: Boolean = false
+                binding.stateNet.setOnCheckedChangeListener { buttonView, isChecked -> stateNetw = isChecked }
+
+                builder.setView(v)
+                builder.setPositiveButton(R.string.dialog_yes, { dialog: DialogInterface?, which: Int ->
+                    run {
+                        doAsync {
+                            Log.e("hola", stateNetw.toString())
+                            var net: Network = Network(binding.nameNet.text.toString(), binding.addNet.text.toString(), stateNetw.toString(), binding.obsNet.text.toString(), "https://i.pinimg.com/originals/33/44/58/3344583bfb0905d5f2ccb53fb84650a1.jpg")
+                            viewModel.insertNetwork(net)
+                            uiThread { loadData() }
+                        }
+                    }
+                })
+                builder.setNegativeButton(R.string.dialog_no, { dialog: DialogInterface?, which: Int -> })
+                builder.create().show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

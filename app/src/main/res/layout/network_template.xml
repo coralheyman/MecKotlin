@@ -104,6 +104,7 @@
 
                 <TextView
                     android:id="@+id/statusNetwork"
+                    android:text='@{network.stateNetwork.equals("true")?"Activa":"Inactiva"}'
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
